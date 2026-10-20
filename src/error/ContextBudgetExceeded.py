@@ -1,0 +1,2 @@
+class ContextBudgetExceeded(Exception):
+    pass
