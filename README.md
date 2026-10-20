@@ -136,6 +136,31 @@ SQL 使用参数绑定；消息写入时不要拼接 SQL 字符串。先明确�
 3. 为什么 seq、occurred_at 和 recorded_at 是三个不同概念？
 4. 为什么重复请求不能直接插入，也不能随意覆盖？
 
+## 第二关：上下文队列
+
+第一小步实现 ContextQueue，绑定一个用户会话，从 MessageStore 增量读取消息。
+历史库保存完整记录；队列保存当前会话的内存工作副本。新增消息仍先写入 MessageStore，再显式刷新队列。
+
+核心文件为 `src/context_queue.py`，验收测试放在 `tests/test_context_queue.py`。
+
+### 第一小步接口
+
+- 构造：ContextQueue(store, user_id=..., session_id=...)。构造后队列为空，不自动读取数据库。
+- 内部保存完整记录列表 `_records`，初始 `last_seq=0`。完整记录用于后续来源追溯和裁剪。
+- refresh()：调用 list_messages，传入绑定的 user_id、session_id 和 after_seq=last_seq；追加新增记录，返回新增数量。没有新增记录时返回 0，不改变状态。
+- 刷新成功后，last_seq 取最后一条新增记录的 seq；不能使用队列长度或新增数量代替水位。
+- to_messages()：按队列顺序导出各记录的 payload，并返回深拷贝。导出结果不包含 user_id、session_id、seq 等存储元数据。
+- 队列不执行数据库删除；以后从上下文移除消息时，也不删除完整历史。不在导出方法中隐式刷新。
+
+### 第一小步验收
+
+1. 空库刷新返回 0，导出空列表，last_seq 保持 0。
+2. 当前会话两条消息按序加载；其他用户、其他会话的消息不混入；再次刷新返回 0，结果不重复。
+3. 历史库追加第三条消息后，刷新前队列保持原样；刷新返回 1，随后导出三条消息，last_seq 更新。
+4. 修改导出列表或其中的嵌套 payload，不影响下次导出和数据库内容。
+
+本小步先完成增量同步；下一小步增加 token 预算与明确的预算不足处理。摘要压缩在第 7a 关接入。
+
 ## 后续基准的固定约定
 
 - LongMemEval 使用对话版官方 cleaned S/M 数据；Oracle 为单独的证据诊断实验。[官方仓库](https://github.com/xiaowu0162/LongMemEval)
