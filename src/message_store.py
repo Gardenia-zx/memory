@@ -166,3 +166,23 @@ class MessageStore:
         return rows
     def close(self) -> None:
         self.conn.close()
+
+    def list_user_messages(
+            self,
+            *,
+            user_id: str,
+    )->list[dict]:
+        self._validate_ids(user_id=user_id)
+        cursor = self.conn.cursor()
+        rows = cursor.execute('''
+        SELECT *
+        FROM messages
+        WHERE user_id = ?
+        ORDER BY session_id ASC, seq ASC
+        ''', (user_id,)).fetchall()
+        cursor.close()
+        for i in range(len(rows)):
+            rows[i] = dict(rows[i])
+            rows[i]["payload_json"] = json.loads(rows[i]["payload_json"])
+            rows[i]["payload"] = rows[i].pop("payload_json")
+        return rows
