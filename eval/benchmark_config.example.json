@@ -1,0 +1,36 @@
+{
+  "benchmark": "longmemeval",
+  "dataset_path": "",
+  "assumed_timezone": "+00:00",
+  "api_key": "",
+  "api_key_env": "OPENAI_API_KEY",
+  "model": "",
+  "base_url": "https://api.openai.com/v1",
+  "api_mode": "responses",
+  "timeout_seconds": 60,
+  "max_output_tokens": 2048,
+  "max_context_characters": 60000,
+  "output_directory": "../data/benchmark_runs",
+  "report_path": "",
+  "predictions_path": "",
+  "official_command_path": "",
+  "official_scores_path": "",
+  "official_repository": "",
+  "official_python": "",
+  "judge_model": "gpt-4o",
+  "top_k": 5,
+  "run_config": {
+    "dataset_variant": "cleaned_s",
+    "model": "",
+    "extractor_prompt_version": "",
+    "answer_prompt_version": "",
+    "retriever": "lexical",
+    "graph_enabled": false,
+    "official_scorer_revision": ""
+  },
+  "official_sources": [
+    "https://github.com/xiaowu0162/LongMemEval",
+    "https://github.com/snap-research/locomo",
+    "https://github.com/snap-research/locomo/blob/main/task_eval/evaluation.py"
+  ]
+}

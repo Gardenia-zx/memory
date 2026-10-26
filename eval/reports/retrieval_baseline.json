@@ -1,0 +1,212 @@
+{
+  "top_k": 2,
+  "answerable_count": 6,
+  "no_answer_count": 2,
+  "mean_recall_at_k": 0.7777777777777777,
+  "hit_rate_at_k": 0.8333333333333334,
+  "no_answer_empty_rate": 1.0,
+  "details": [
+    {
+      "case_id": "single_keyword",
+      "user_id": "u1",
+      "query": "咖啡",
+      "relevant_sources": [
+        {
+          "user_id": "u1",
+          "session_id": "s1",
+          "message_id": "m1"
+        },
+        {
+          "user_id": "u1",
+          "session_id": "s1",
+          "message_id": "m2"
+        }
+      ],
+      "retrieved": [
+        {
+          "source": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "message_id": "m1"
+          },
+          "score": 1
+        },
+        {
+          "source": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "message_id": "m2"
+          },
+          "score": 1
+        }
+      ],
+      "recall_at_k": 1.0,
+      "hit_at_k": 1,
+      "empty_return": false
+    },
+    {
+      "case_id": "multiple_keywords",
+      "user_id": "u1",
+      "query": "早餐 咖啡",
+      "relevant_sources": [
+        {
+          "user_id": "u1",
+          "session_id": "s1",
+          "message_id": "m1"
+        }
+      ],
+      "retrieved": [
+        {
+          "source": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "message_id": "m1"
+          },
+          "score": 2
+        },
+        {
+          "source": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "message_id": "m2"
+          },
+          "score": 1
+        }
+      ],
+      "recall_at_k": 1.0,
+      "hit_at_k": 1,
+      "empty_return": false
+    },
+    {
+      "case_id": "cross_session",
+      "user_id": "u1",
+      "query": "咖啡 跑步",
+      "relevant_sources": [
+        {
+          "user_id": "u1",
+          "session_id": "s1",
+          "message_id": "m1"
+        },
+        {
+          "user_id": "u1",
+          "session_id": "s1",
+          "message_id": "m2"
+        },
+        {
+          "user_id": "u1",
+          "session_id": "s2",
+          "message_id": "m4"
+        }
+      ],
+      "retrieved": [
+        {
+          "source": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "message_id": "m1"
+          },
+          "score": 1
+        },
+        {
+          "source": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "message_id": "m2"
+          },
+          "score": 1
+        }
+      ],
+      "recall_at_k": 0.6666666666666666,
+      "hit_at_k": 1,
+      "empty_return": false
+    },
+    {
+      "case_id": "casefold",
+      "user_id": "u1",
+      "query": "PYTHON 笔记",
+      "relevant_sources": [
+        {
+          "user_id": "u1",
+          "session_id": "s1",
+          "message_id": "m3"
+        }
+      ],
+      "retrieved": [
+        {
+          "source": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "message_id": "m3"
+          },
+          "score": 2
+        }
+      ],
+      "recall_at_k": 1.0,
+      "hit_at_k": 1,
+      "empty_return": false
+    },
+    {
+      "case_id": "city",
+      "user_id": "u1",
+      "query": "杭州",
+      "relevant_sources": [
+        {
+          "user_id": "u1",
+          "session_id": "s2",
+          "message_id": "m5"
+        }
+      ],
+      "retrieved": [
+        {
+          "source": {
+            "user_id": "u1",
+            "session_id": "s2",
+            "message_id": "m5"
+          },
+          "score": 1
+        }
+      ],
+      "recall_at_k": 1.0,
+      "hit_at_k": 1,
+      "empty_return": false
+    },
+    {
+      "case_id": "synonym_miss",
+      "user_id": "u1",
+      "query": "早饭 饮品",
+      "relevant_sources": [
+        {
+          "user_id": "u1",
+          "session_id": "s1",
+          "message_id": "m1"
+        }
+      ],
+      "retrieved": [],
+      "recall_at_k": 0.0,
+      "hit_at_k": 0,
+      "empty_return": true
+    },
+    {
+      "case_id": "no_answer",
+      "user_id": "u1",
+      "query": "游泳",
+      "relevant_sources": [],
+      "retrieved": [],
+      "recall_at_k": null,
+      "hit_at_k": null,
+      "empty_return": true
+    },
+    {
+      "case_id": "user_isolation",
+      "user_id": "u1",
+      "query": "滑雪",
+      "relevant_sources": [],
+      "retrieved": [],
+      "recall_at_k": null,
+      "hit_at_k": null,
+      "empty_return": true
+    }
+  ],
+  "dataset_id": "retrieval_dev_v1",
+  "retriever": "keyword_v1"
+}

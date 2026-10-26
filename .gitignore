@@ -21,9 +21,11 @@ ENV/
 htmlcov/
 .tox/
 .nox/
+.test-tmp/
 
 # 运行时数据目录（演示数据库等，不随仓库分发）
 data/
+external/
 *.sqlite
 *.sqlite3
 *.db
@@ -31,6 +33,7 @@ data/
 # 环境变量与密钥
 .env
 .env.*
+eval/benchmark_config.local.json
 
 # 本地 MCP 配置（含本机端口，属个人环境）
 .mcp.json

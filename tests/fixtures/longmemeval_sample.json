@@ -1,0 +1,30 @@
+[
+  {
+    "question_id": "fixture-q1",
+    "question_type": "single-session-user",
+    "question": "Where did I move?",
+    "answer": "杭州",
+    "question_date": "2024/02/03 (Sat) 12:00",
+    "haystack_session_ids": ["second", "first"],
+    "haystack_dates": ["2024/02/02 (Fri) 09:00", "2024/02/01 (Thu) 08:00"],
+    "haystack_sessions": [
+      [{"role": "user", "content": "我搬到了杭州", "has_answer": true}],
+      [{"role": "assistant", "content": "之前聊过北京", "has_answer": false}]
+    ],
+    "answer_session_ids": ["second"]
+  },
+  {
+    "question_id": "fixture-q2_abs",
+    "question_type": "single-session-user",
+    "question": "What is my phone number?",
+    "answer": "Not stated",
+    "question_date": "2024/02/03 (Sat) 12:00",
+    "haystack_session_ids": ["second", "first"],
+    "haystack_dates": ["2024/02/02 (Fri) 09:00", "2024/02/01 (Thu) 08:00"],
+    "haystack_sessions": [
+      [{"role": "user", "content": "我搬到了杭州"}],
+      [{"role": "assistant", "content": "之前聊过北京"}]
+    ],
+    "answer_session_ids": []
+  }
+]

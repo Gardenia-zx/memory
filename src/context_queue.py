@@ -1,6 +1,6 @@
 import copy
 
-from error.ContextBudgetExceeded import ContextBudgetExceeded
+from src.error import ContextBudgetExceeded
 from src.message_store import MessageStore
 
 
@@ -44,6 +44,6 @@ class ContextQueue:
     )->list[dict]:
         messages = self.to_messages()
         used_tokens = token_counter(messages)
-        if used_tokens >= max_tokens:
+        if used_tokens > max_tokens:
             raise ContextBudgetExceeded(f"{used_tokens} tokens超过了{max_tokens}最大tokens限额")
         return messages

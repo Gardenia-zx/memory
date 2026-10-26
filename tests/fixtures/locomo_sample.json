@@ -1,0 +1,23 @@
+[
+  {
+    "sample_id": "synthetic-official-shape",
+    "conversation": {
+      "speaker_a": "Alice",
+      "speaker_b": "Bea",
+      "session_1_date_time": "1:56 pm on 8 May, 2023",
+      "session_1": [
+        {"speaker": "Alice", "dia_id": "D1:1", "text": "I moved to Hangzhou."},
+        {"speaker": "Bea", "dia_id": "D1:2", "text": "Here is my picture.", "blip_caption": "A cup of tea", "img_url": "https://example.invalid/tea.jpg"}
+      ],
+      "session_2_date_time": "2:00 pm on 9 May, 2023",
+      "session_2": [{"speaker": "Alice", "dia_id": "D2:1", "text": "I like coffee."}]
+    },
+    "session_summary": {"session_1_summary": "DO_NOT_INGEST_SUMMARY"},
+    "observation": {"session_1_observation": "DO_NOT_INGEST_OBSERVATION"},
+    "event_summary": {"events_session_1": "DO_NOT_INGEST_GOLD"},
+    "qa": [
+      {"question": "Where did Alice move?", "answer": "Hangzhou", "category": 4, "evidence": ["(D1:1)", ""]},
+      {"question": "What is Bea's phone number?", "adversarial_answer": "WRONG_DISTRACTOR", "category": 5}
+    ]
+  }
+]
